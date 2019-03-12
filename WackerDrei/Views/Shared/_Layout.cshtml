@@ -1,0 +1,47 @@
+﻿@using WebGrease
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Wacker Dr&uuml;</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            @Html.ActionLink("Wacker Drü", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+            <div class="navbar-collapse collapse" id="navbarContent">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item">@Html.ActionLink("Blog", "Index", "Blog", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Termine", "Index", "Event", null, new { @class = "nav-link" })</li>
+                        @*<li>@Html.ActionLink("Tabelle", "Contact", "Home")</li>*@
+                        <li class="nav-item">@Html.ActionLink("Aktivmitglieder", "Active", "Player", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Erweitertes Kader", "Passiv", "Player", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Events", "Menu", "Event", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Statuten", "Stats", "Blog", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Kontakt", "Create", "Kontakt", null, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Wacker Dr&uuml;</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</body>
+</html>

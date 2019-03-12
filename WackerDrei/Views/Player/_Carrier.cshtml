@@ -1,0 +1,23 @@
+﻿@model WackerDrei.ViewModels.PlayerViewModel
+
+<tr>
+    @Html.Hidden("Carrier.Index", (int)ViewData["Index"], new { id = "" , @class= "carrier-hidden-index-input" })
+    <td>
+        @Html.TextBox("Carrier[" + (int)ViewData["Index"] + "].Association", Model.Carriers.ElementAtOrDefault((int)ViewData["Index"])?.Association, new { id = "", @class = "form-control"})
+        @Html.ValidationMessage("Carrier[" + (int)ViewData["Index"] + "].Association", new { @class = "text-danger" })
+    </td>
+    <td>
+        @Html.TextBox("Carrier[" + (int)ViewData["Index"] + "].Team", Model.Carriers.ElementAtOrDefault((int)ViewData["Index"])?.Team, new { id = "", @class = "form-control"})
+        @Html.ValidationMessage("Carrier[" + (int)ViewData["Index"] + "].Team", new { @class = "text-danger" })
+    </td>
+    <td>
+        <input name="Carrier[@((int)ViewData["Index"])].From" type="text" class="form-control date-picker" value="@(Model.Carriers.ElementAtOrDefault((int)ViewData["Index"])?.From.ToString().Split(' ')[0])">
+    </td>
+    <td>
+        <input name="Carrier[@((int)ViewData["Index"])].To" type="text" class="form-control date-picker" value="@(Model.Carriers.ElementAtOrDefault((int)ViewData["Index"])?.To.ToString().Split(' ')[0])">
+    </td>
+    <td>
+        <input type="button" class='btn btn-danger remove-row-btn' value="Entfernen"/>
+    </td>
+
+</tr>
